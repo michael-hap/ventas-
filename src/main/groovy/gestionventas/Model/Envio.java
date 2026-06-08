@@ -1,0 +1,55 @@
+package gestionventas.Model;
+
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import lombok.*;
+
+import java.lang.reflect.Type;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
+
+
+@Entity
+@Table(name= "envios")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+
+public class Envio {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idEnvio;
+
+    @NotNull(message = "La guía es obligatoria")
+    @Column(name = "Guia", nullable = false)
+    private String guia;
+
+    @Column(updatable = false)
+    private LocalDateTime fechaHoraEnvio;
+
+    @NotNull(message = "La dirección del envío es obligatoria")
+    @ManyToOne
+    @JoinColumn(name= "id_direccion", nullable = false)
+    private Direccion direccion;
+
+    @NotNull(message= "El estado del envío es obligatorio")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "Estado", nullable = false)
+    private EstadoEnvio estado;
+
+    @NotNull(message = "El costo del envío es obligatorio")
+    @PositiveOrZero(message = "El costo del envío no puede ser negativo")
+    @Column(name = "Costo", nullable = false)
+    private BigDecimal costo;
+
+    private void asignarCostoPorDireccion(){
+        if (this.direccion != null && this.direccion.getDepartamento() != null) {
+            this.costo = this.direccion.getDepartamento().getCosto();
+        }
+    }
+}
