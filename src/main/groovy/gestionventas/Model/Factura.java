@@ -44,7 +44,4 @@ public class Factura {
     @PositiveOrZero
     private BigDecimal subtotal;
 
-
-    /*Factura: id, fecha, subtotal, total, descripcion
-    */
 }
