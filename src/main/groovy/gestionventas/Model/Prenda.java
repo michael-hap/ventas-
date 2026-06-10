@@ -50,6 +50,6 @@ public class Prenda {
     @JoinColumn(name = "categoria_id", nullable = false)
     private CategoriaPrenda categoria;
 
-    @OneToMany(mappedBy = "referenciaPrenda", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "Prendas", cascade = CascadeType.ALL)
     private List<Talla> tallas;
 }
