@@ -30,6 +30,7 @@ public class Carrito {
     @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
 
+    @Builder.Default
     @OneToMany(mappedBy = "carrito", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DetalleCarrito> detalles = new ArrayList<>();
 
