@@ -23,7 +23,6 @@ public interface VentaRepository extends JpaRepository<Venta, Long> {
 
     List<Venta> findByTotalLessThanEqual(BigDecimal total);
 
-
     Long countByEstadoVenta(EstadoVenta estadoVenta);
 
     boolean existsByIdVenta(Long idVenta);

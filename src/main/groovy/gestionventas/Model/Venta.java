@@ -39,6 +39,4 @@ public class Venta {
     @PositiveOrZero
     private BigDecimal total;
 
-
-
 }

@@ -1,4 +1,5 @@
 package gestionventas.Model;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -27,4 +28,10 @@ public class GuiaTalla {
 
     @NotNull(message = "La medida de largo es obligatoria")
     private Double largo;
+
+    @ManyToOne
+    private Prenda prenda;
+
+    @ManyToOne
+    private Talla talla;
 }

@@ -1,39 +1,32 @@
 package gestionventas.Model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
-import java.lang.reflect.Type;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.List;
 
-
 @Entity
-@Table(name= "tallas")
+@Table(name = "tallas")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
 public class Talla {
 
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTalla;
 
-    @NotBlank(message = "El nombre es obligatorio")
-    @Column(name = "Nombre_prenda", nullable = false)
+    @NotBlank(message = "El nombre de la talla es obligatorio")
+    @Column(name = "nombre_talla", nullable = false)
     private String nombre;
 
-    @NotNull(message = "La referencia de la prenda es obligatoria")
-    @OneToMany(mappedBy = "Prendas", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "tallas")
     private List<Prenda> prendas;
 
-    @NotNull(message= "La guía es obligatoria")
-    @OneToMany(mappedBy = "Guia", cascade = CascadeType.ALL)
-    private List<GuiaTalla> guiaTallas;
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_guia")
+    private GuiaTalla guiaTalla;
 }
