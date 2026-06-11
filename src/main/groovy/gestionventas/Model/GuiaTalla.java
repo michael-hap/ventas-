@@ -30,8 +30,10 @@ public class GuiaTalla {
     private Double largo;
 
     @ManyToOne
-    private Prenda prenda;
+    @JoinColumn(name = "id_talla", nullable = false)
+    private Talla talla;
 
     @ManyToOne
-    private Talla talla;
+    @JoinColumn(name = "id_prenda", nullable = false)
+    private Prenda prenda;
 }

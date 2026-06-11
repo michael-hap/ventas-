@@ -20,13 +20,12 @@ public class Talla {
     private Long idTalla;
 
     @NotBlank(message = "El nombre de la talla es obligatorio")
-    @Column(name = "nombre_talla", nullable = false)
+    @Column(name = "nombre_talla", nullable = false, unique = true)
     private String nombre;
 
     @ManyToMany(mappedBy = "tallas")
     private List<Prenda> prendas;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_guia")
-    private GuiaTalla guiaTalla;
+    @OneToMany(mappedBy = "talla", cascade = CascadeType.ALL)
+    private List<GuiaTalla> guiasTalla;
 }
