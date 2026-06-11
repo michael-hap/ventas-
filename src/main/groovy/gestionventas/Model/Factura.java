@@ -31,8 +31,13 @@ public class Factura {
     @Column(name = "Descripcion", nullable = false)
     private String descripcion;
 
-    @Column(updatable = false)
+    @Column(nullable = false, updatable = false)
     private LocalDateTime fechaHoraFactura;
+
+    @PrePersist
+    public void prePersist() {
+        this.fechaHoraFactura = LocalDateTime.now();
+    }
 
     @NotNull(message = "El total no puede ser vacío")
     @Column(name = "Total", nullable = false)
