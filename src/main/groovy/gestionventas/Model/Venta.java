@@ -11,7 +11,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-
 @Entity
 @Table(name= "ventas")
 @Getter
@@ -21,7 +20,6 @@ import java.util.List;
 @Builder
 
 public class Venta {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idVenta;
@@ -38,5 +36,4 @@ public class Venta {
     @Column(name = "Total", nullable = false)
     @PositiveOrZero
     private BigDecimal total;
-
 }
