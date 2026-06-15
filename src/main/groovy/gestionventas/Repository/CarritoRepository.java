@@ -8,7 +8,7 @@ import java.util.Optional;
 
 @Repository
 public interface CarritoRepository extends JpaRepository<Carrito, Long> {
-    
+
     Optional<Carrito> findByUsuario_IdUsuario(Long idUsuario);
 
     boolean existsByUsuario_IdUsuario(Long idUsuario);
