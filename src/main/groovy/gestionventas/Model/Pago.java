@@ -36,4 +36,6 @@ public class Pago {
     @Enumerated(EnumType.STRING)
     @Column(name = "estado_pago", nullable = false)
     private EstadoPago estadoPago;
+
 }
+
