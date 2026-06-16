@@ -3,7 +3,9 @@ package gestionventas.Dto;
 import gestionventas.Model.EstadoEnvio;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 
+@Data
 public class CrearEnvioRequestDTO {
 
     @NotBlank(message = "La guía es obligatoria")

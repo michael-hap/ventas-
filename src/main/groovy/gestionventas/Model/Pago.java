@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "pagos")
@@ -21,7 +22,7 @@ public class Pago {
 
     @NotNull(message = "La fecha del pago es obligatoria")
     @Column(name = "fecha", nullable = false)
-    private LocalDateTime fecha;
+    private LocalTime fecha;
 
     @NotNull(message = "El total del pago es obligatorio")
     @Column(name = "total_pago", nullable = false)

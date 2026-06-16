@@ -2,10 +2,12 @@ package gestionventas.Dto;
 
 import gestionventas.Model.EstadoEnvio;
 import gestionventas.Model.TarifaEnvio;
+import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+@Data
 public class EnvioResponseDTO {
 
     private Long idEnvio;
