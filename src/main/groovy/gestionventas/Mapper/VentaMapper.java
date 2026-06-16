@@ -1,4 +1,4 @@
 package gestionventas.Mapper;
 
-public class pruebaMapeo {
+public class VentaMapper {
 }

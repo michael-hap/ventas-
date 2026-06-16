@@ -38,5 +38,8 @@ public class Pago {
     @Column(name = "estado_pago", nullable = false)
     private EstadoPago estadoPago;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id", nullable = true)
+    private Usuario cliente;
 }
 
