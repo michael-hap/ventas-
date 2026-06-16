@@ -12,7 +12,7 @@ public class CrearUsuarioRequestDTO {
 
     @NotBlank(message = "El nombre del usuario es obligatorio")
     @Size(max = 50, message = "El nombre no puede sobrepasar los 50 caracteres")
-    public String nombreUsuario;
+    private String nombreUsuario;
 
     @NotBlank(message = "El correo electrónico es obligatorio")
     @Email(message = "Debe proporcionar un correo electrónico válido")

@@ -30,6 +30,4 @@ public class PagoMapper {
         pago.setCliente(cliente);
         return pago;
     }
-
-
 }
