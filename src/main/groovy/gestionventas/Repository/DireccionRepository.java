@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface DireccionRepository extends JpaRepository<Talla, Long> {
+public interface DireccionRepository extends JpaRepository<Direccion, Long> {
 
     boolean existsByCiudad(String ciudad);
     Optional<Direccion> findByCiudad(String ciudad);
