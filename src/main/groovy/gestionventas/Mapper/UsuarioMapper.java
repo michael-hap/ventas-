@@ -28,7 +28,6 @@ public class UsuarioMapper {
 
         usuario.setNombreUsuario(dto.getNombreUsuario());
         usuario.setCorreoElectronico(dto.getCorreoElectronico());
-        usuario.setContrasenia(dto.getContrasenia());
         usuario.setTelefono(dto.getTelefono());
         usuario.setRol(dto.getRol());
         usuario.setActivo(true);

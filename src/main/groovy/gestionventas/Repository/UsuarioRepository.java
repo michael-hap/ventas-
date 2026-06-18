@@ -12,11 +12,11 @@ import java.util.Optional;
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     boolean existsByCorreoElectronico(String correoElectronico);
-    Optional<Usuario> findByCorreoElectronico(String correoElectronico);
+    Optional<Usuario> findByIdUsuario(Long idUsuario);
 
     List<Usuario> findByRol(Rol rol);
 
     Optional<Usuario> findByNombreUsuario(String nombreUsuario);
 
-    Optional<Usuario> findByIdUsuario(String idUsuario);
+
 }
