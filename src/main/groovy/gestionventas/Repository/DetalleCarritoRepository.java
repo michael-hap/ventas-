@@ -5,15 +5,18 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
-public interface DetalleCarritoRepository extends JpaRepository<DetalleCarrito, Long> {
+public interface DetalleCarritoRepository
+        extends JpaRepository<DetalleCarrito, Long> {
 
     List<DetalleCarrito> findByCarrito_IdCarrito(Long idCarrito);
 
     List<DetalleCarrito> findByPrenda_IdPrenda(Long idPrenda);
 
-    DetalleCarrito findByCarrito_IdCarritoAndPrenda_IdPrenda(
+    Optional<DetalleCarrito>
+    findByCarrito_IdCarritoAndPrenda_IdPrenda(
             Long idCarrito,
             Long idPrenda
     );
