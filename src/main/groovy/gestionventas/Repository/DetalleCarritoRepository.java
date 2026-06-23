@@ -15,8 +15,7 @@ public interface DetalleCarritoRepository
 
     List<DetalleCarrito> findByPrenda_IdPrenda(Long idPrenda);
 
-    Optional<DetalleCarrito>
-    findByCarrito_IdCarritoAndPrenda_IdPrenda(
+    Optional<DetalleCarrito> findByCarrito_IdCarritoAndPrenda_IdPrenda(
             Long idCarrito,
             Long idPrenda
     );

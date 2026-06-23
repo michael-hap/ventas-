@@ -58,6 +58,7 @@ public class CarritoService {
             Long idPrenda,
             int cantidad
     ) {
+
         validarCantidad(cantidad);
 
         Carrito carrito = obtenerOCrearCarrito(idUsuario);
@@ -74,25 +75,23 @@ public class CarritoService {
 
         if (detalleExistente != null) {
 
-            int nuevaCantidad =
-                    detalleExistente.getCantidad() + cantidad;
-
-            detalleExistente.setCantidad(nuevaCantidad);
+            detalleExistente.setCantidad(
+                    detalleExistente.getCantidad() + cantidad
+            );
 
             detalleCarritoRepository.save(detalleExistente);
 
         } else {
 
-            DetalleCarrito nuevoDetalle =
-                    new DetalleCarrito();
+            DetalleCarrito detalle = new DetalleCarrito();
 
-            nuevoDetalle.setCarrito(carrito);
-            nuevoDetalle.setPrenda(prenda);
-            nuevoDetalle.setCantidad(cantidad);
+            detalle.setCarrito(carrito);
+            detalle.setPrenda(prenda);
+            detalle.setCantidad(cantidad);
 
-            detalleCarritoRepository.save(nuevoDetalle);
+            detalle = detalleCarritoRepository.save(detalle);
 
-            carrito.getDetalles().add(nuevoDetalle);
+            carrito.getDetalles().add(detalle);
         }
 
         return carrito;
@@ -104,12 +103,16 @@ public class CarritoService {
             Long idPrenda,
             int nuevaCantidad
     ) {
+
         validarCantidad(nuevaCantidad);
 
         Carrito carrito = buscarCarritoPorUsuario(idUsuario);
 
         DetalleCarrito detalle =
-                buscarDetalle(carrito.getIdCarrito(), idPrenda);
+                buscarDetalle(
+                        carrito.getIdCarrito(),
+                        idPrenda
+                );
 
         detalle.setCantidad(nuevaCantidad);
 
@@ -123,10 +126,14 @@ public class CarritoService {
             Long idUsuario,
             Long idPrenda
     ) {
+
         Carrito carrito = buscarCarritoPorUsuario(idUsuario);
 
         DetalleCarrito detalle =
-                buscarDetalle(carrito.getIdCarrito(), idPrenda);
+                buscarDetalle(
+                        carrito.getIdCarrito(),
+                        idPrenda
+                );
 
         carrito.getDetalles().remove(detalle);
 
@@ -199,6 +206,7 @@ public class CarritoService {
             Long idCarrito,
             Long idPrenda
     ) {
+
         return detalleCarritoRepository
                 .findByCarrito_IdCarritoAndPrenda_IdPrenda(
                         idCarrito,
