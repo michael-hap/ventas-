@@ -1,20 +1,19 @@
 package gestionventas.Dto;
 
 import gestionventas.Model.MetodoPago;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Positive;
 import lombok.Data;
 
 @Data
 public class CrearPagoRequestDTO {
 
     @NotNull(message = "El total del pago es obligatorio")
-    @Size(max = 100, message = "El total no puede sobrepasar de los 100 caracteres")
-    public Double totalPago;
+    @Positive(message = "El total debe ser mayor que cero")
+    private Double totalPago;
 
-    @NotNull(message = "El metodo de pago es obligatorio")
-    public MetodoPago metodoPago;
+    @NotNull(message = "El método de pago es obligatorio")
+    private MetodoPago metodoPago;
 
-
+    private Long idCliente;
 }

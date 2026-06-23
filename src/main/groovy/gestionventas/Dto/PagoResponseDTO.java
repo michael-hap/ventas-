@@ -1,6 +1,7 @@
 package gestionventas.Dto;
 
 import gestionventas.Model.EstadoPago;
+import gestionventas.Model.MetodoPago;
 import lombok.Data;
 
 import java.time.LocalTime;
@@ -12,5 +13,13 @@ public class PagoResponseDTO {
 
     private LocalTime fecha;
 
+    private Double totalPago;
+
+    private MetodoPago metodoPago;
+
     private EstadoPago estadoPago;
+
+    private Long idCliente;
+
+    private String nombreCliente;
 }
