@@ -8,4 +8,6 @@ public class CategoriaPrendaResponseDTO {
     private Long idCategoria;
 
     private String nombre;
+
+    private String descripcion;
 }

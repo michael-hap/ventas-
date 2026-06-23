@@ -8,17 +8,22 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PrendaRepository extends JpaRepository<Prenda, Long> {
+public interface PrendaRepository
+        extends JpaRepository<Prenda, Long> {
 
     List<Prenda> findByNombre(String nombre);
 
-    List<Prenda> findByNombreContainingIgnoreCase(String nombre);
+    List<Prenda> findByNombreContainingIgnoreCase(
+            String nombre
+    );
 
     List<Prenda> findByGenero(Genero genero);
 
     List<Prenda> findByTipoTela(String tipoTela);
 
-    List<Prenda> findByCategoria_IdCategoria(Long idCategoria);
+    List<Prenda> findByCategoria_IdCategoria(
+            Long idCategoria
+    );
 
     List<Prenda> findByCategoria_IdCategoriaAndGenero(
             Long idCategoria,
@@ -26,4 +31,8 @@ public interface PrendaRepository extends JpaRepository<Prenda, Long> {
     );
 
     boolean existsByNombre(String nombre);
+
+    boolean existsByCategoria_IdCategoria(
+            Long idCategoria
+    );
 }

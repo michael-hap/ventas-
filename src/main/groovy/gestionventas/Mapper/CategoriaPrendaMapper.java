@@ -1,22 +1,43 @@
 package gestionventas.Mapper;
 
-
 import gestionventas.Dto.CategoriaPrendaResponseDTO;
+import gestionventas.Dto.CrearCategoriaPrendaRequestDTO;
 import gestionventas.Model.CategoriaPrenda;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CategoriaPrendaMapper {
 
-    public CategoriaPrendaResponseDTO toCategoriaPrendaResponseDTO(CategoriaPrenda categoriaPrenda){
+    public CategoriaPrendaResponseDTO toCategoriaPrendaResponseDTO(
+            CategoriaPrenda categoriaPrenda
+    ) {
+        CategoriaPrendaResponseDTO dto =
+                new CategoriaPrendaResponseDTO();
 
-        CategoriaPrendaResponseDTO dto = new CategoriaPrendaResponseDTO();
+        dto.setIdCategoria(
+                categoriaPrenda.getIdCategoria()
+        );
 
-        dto.setIdCategoria(categoriaPrenda.getIdCategoria());
+        dto.setNombre(
+                categoriaPrenda.getNombre()
+        );
 
-        dto.setNombre(categoriaPrenda.getNombre());
+        dto.setDescripcion(
+                categoriaPrenda.getDescripcion()
+        );
 
         return dto;
     }
 
+    public CategoriaPrenda aEntidad(
+            CrearCategoriaPrendaRequestDTO dto
+    ) {
+        CategoriaPrenda categoria =
+                new CategoriaPrenda();
+
+        categoria.setNombre(dto.getNombre());
+        categoria.setDescripcion(dto.getDescripcion());
+
+        return categoria;
+    }
 }

@@ -10,7 +10,25 @@ import java.util.Optional;
 @Repository
 public interface CategoriaPrendaRepository extends JpaRepository<CategoriaPrenda, Long> {
 
-    Optional<CategoriaPrenda> findByNombre(String nombre);
+    boolean existsByNombreIgnoreCase(String nombre);
+    Optional<CategoriaPrenda> findByNombreIgnoreCase(String nombre);
     Optional<CategoriaPrenda> findByDescripcion(String descripcion);
 
+    List<CategoriaPrenda>
+    findByNombreContainingIgnoreCase(String nombre);
+
+    List<CategoriaPrenda>
+    findAllByOrderByNombreAsc();
+
 }
+
+
+
+
+
+
+
+
+
+
+
