@@ -37,6 +37,9 @@ public class PagoService {
 
         pago.setFecha(LocalTime.now());
 
+        // Estado inicial por defecto
+        pago.setEstadoPago(EstadoPago.PENDIENTE);
+
         Pago guardado = pagoRepository.save(pago);
 
         return pagoMapper.toPagoResponseDTO(guardado);
@@ -65,5 +68,56 @@ public class PagoService {
                 .stream()
                 .map(pagoMapper::toPagoResponseDTO)
                 .collect(Collectors.toList());
+    }
+
+    public PagoResponseDTO actualizarPago(
+            Long id,
+            CrearPagoRequestDTO dto
+    ) {
+
+        Pago pago = pagoRepository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException("Pago no encontrado"));
+
+        Usuario cliente = null;
+
+        if (dto.getIdCliente() != null) {
+            cliente = usuarioRepository.findById(dto.getIdCliente())
+                    .orElseThrow(() ->
+                            new RuntimeException("Cliente no encontrado"));
+        }
+
+        pago.setTotalPago(dto.getTotalPago());
+        pago.setMetodoPago(dto.getMetodoPago());
+        pago.setCliente(cliente);
+
+        Pago actualizado = pagoRepository.save(pago);
+
+        return pagoMapper.toPagoResponseDTO(actualizado);
+    }
+
+    public PagoResponseDTO actualizarEstado(
+            Long id,
+            EstadoPago estado
+    ) {
+
+        Pago pago = pagoRepository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException("Pago no encontrado"));
+
+        pago.setEstadoPago(estado);
+
+        Pago actualizado = pagoRepository.save(pago);
+
+        return pagoMapper.toPagoResponseDTO(actualizado);
+    }
+
+    public void eliminarPago(Long id) {
+
+        Pago pago = pagoRepository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException("Pago no encontrado"));
+
+        pagoRepository.delete(pago);
     }
 }
