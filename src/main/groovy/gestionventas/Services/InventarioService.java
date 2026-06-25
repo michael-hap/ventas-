@@ -37,20 +37,16 @@ public class InventarioService {
 
     public InventarioResponseDTO buscarPorId(Long id) {
 
-        Inventario inventario = inventarioRepository.findById(id)
-                .orElseThrow(() ->
-                        new RuntimeException("Inventario no encontrado"));
-
-        return inventarioMapper.toInventarioResponseDTO(inventario);
+        return inventarioMapper.toInventarioResponseDTO(
+                buscarInventario(id)
+        );
     }
 
     public InventarioResponseDTO actualizarInventario(
             Long id,
             CrearInventarioRequestDTO dto) {
 
-        Inventario inventario = inventarioRepository.findById(id)
-                .orElseThrow(() ->
-                        new RuntimeException("Inventario no encontrado"));
+        Inventario inventario = buscarInventario(id);
 
         inventario.setStock(dto.getStock());
 
@@ -61,10 +57,17 @@ public class InventarioService {
 
     public void eliminarInventario(Long id) {
 
-        Inventario inventario = inventarioRepository.findById(id)
-                .orElseThrow(() ->
-                        new RuntimeException("Inventario no encontrado"));
+        Inventario inventario = buscarInventario(id);
 
         inventarioRepository.delete(inventario);
+    }
+
+    private Inventario buscarInventario(Long id) {
+
+        return inventarioRepository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException(
+                                "Inventario no encontrado"
+                        ));
     }
 }
