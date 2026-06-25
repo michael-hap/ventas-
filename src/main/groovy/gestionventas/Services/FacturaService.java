@@ -37,19 +37,39 @@ public class FacturaService {
 
     public FacturaResponseDTO obtenerPorId(Long id) {
 
-        Factura factura = facturaRepository.findById(id)
-                .orElseThrow(() ->
-                        new RuntimeException("Factura no encontrada"));
+        return facturaMapper.toFacturaResponseDTO(
+                buscarFactura(id)
+        );
+    }
 
-        return facturaMapper.toFacturaResponseDTO(factura);
+    public FacturaResponseDTO actualizarFactura(
+            Long id,
+            CrearFacturaRequestDTO dto) {
+
+        Factura factura = buscarFactura(id);
+
+        factura.setDescripcion(dto.getDescripcion());
+        factura.setSubtotal(dto.getSubtotal());
+        factura.setTotal(dto.getTotal());
+
+        Factura actualizada = facturaRepository.save(factura);
+
+        return facturaMapper.toFacturaResponseDTO(actualizada);
     }
 
     public void eliminarFactura(Long id) {
 
-        Factura factura = facturaRepository.findById(id)
-                .orElseThrow(() ->
-                        new RuntimeException("Factura no encontrada"));
+        Factura factura = buscarFactura(id);
 
         facturaRepository.delete(factura);
+    }
+
+    private Factura buscarFactura(Long id) {
+
+        return facturaRepository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException(
+                                "Factura no encontrada"
+                        ));
     }
 }

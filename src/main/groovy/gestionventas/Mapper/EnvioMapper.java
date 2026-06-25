@@ -19,22 +19,42 @@ public class EnvioMapper {
         dto.setEstado(envio.getEstado());
         dto.setCosto(envio.getCosto());
 
-        dto.setIdDireccion(envio.getDireccion().getIdDireccion());
-        dto.setDireccion(envio.getDireccion().getDireccion());
-        dto.setBarrio(envio.getDireccion().getBarrio());
-        dto.setCiudad(envio.getDireccion().getCiudad());
-        dto.setDepartamento(envio.getDireccion().getDepartamento());
+        if (envio.getDireccion() != null) {
+
+            dto.setIdDireccion(
+                    envio.getDireccion().getIdDireccion()
+            );
+
+            dto.setDireccion(
+                    envio.getDireccion().getDireccion()
+            );
+
+            dto.setBarrio(
+                    envio.getDireccion().getBarrio()
+            );
+
+            dto.setCiudad(
+                    envio.getDireccion().getCiudad()
+            );
+
+            dto.setDepartamento(
+                    envio.getDireccion().getDepartamento()
+            );
+        }
 
         return dto;
     }
 
-    public Envio aEntidad(CrearEnvioRequestDTO dto, Direccion direccion) {
+    public Envio aEntidad(
+            CrearEnvioRequestDTO dto,
+            Direccion direccion
+    ) {
 
         Envio envio = new Envio();
 
         envio.setGuia(dto.getGuia());
-        envio.setEstado(dto.getEstado());
         envio.setDireccion(direccion);
+        envio.setEstado(dto.getEstado());
 
         return envio;
     }
