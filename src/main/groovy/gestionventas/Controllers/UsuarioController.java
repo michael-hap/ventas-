@@ -17,14 +17,14 @@ public class UsuarioController {
 
     private final UsuarioService usuarioService;
 
-    @PostMapping
+    @PostMapping("/crear")
     public UsuarioResponseDTO crearUsuario(
             @Valid @RequestBody CrearUsuarioRequestDTO dto) {
 
         return usuarioService.crearUsuario(dto);
     }
 
-    @GetMapping
+    @GetMapping("/listar")
     public List<UsuarioResponseDTO> listarUsuarios() {
 
         return usuarioService.listarUsuarios();
