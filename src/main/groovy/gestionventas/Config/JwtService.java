@@ -53,11 +53,11 @@ public class JwtService {
 
     private Claims extraerClaims(String token) {
 
-        return Jwts.parserBuilder()
-                .setSigningKey(getKey())
+        return Jwts.parser()
+                .verifyWith(getKey())
                 .build()
-                .parseClaimsJws(token)
-                .getBody();
+                .parseSignedClaims(token)
+                .getPayload();
     }
 
     public boolean esValido(String token) {
