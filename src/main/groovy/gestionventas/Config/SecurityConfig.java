@@ -37,7 +37,8 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/auth/**",
                                 "/usuarios/crear",
-                                "/usuarios/login"
+                                "/usuarios/login",
+                                "/usuarios/listar"
                         ).permitAll()
 
                         .requestMatchers(
