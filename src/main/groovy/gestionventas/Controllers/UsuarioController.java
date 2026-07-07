@@ -1,6 +1,8 @@
 package gestionventas.Controllers;
 
 import gestionventas.Dto.CrearUsuarioRequestDTO;
+import gestionventas.Dto.LoginRequestDTO;
+import gestionventas.Dto.LoginResponseDTO;
 import gestionventas.Dto.UsuarioResponseDTO;
 import gestionventas.Model.Rol;
 import gestionventas.Services.UsuarioService;
@@ -22,6 +24,13 @@ public class UsuarioController {
             @Valid @RequestBody CrearUsuarioRequestDTO dto) {
 
         return usuarioService.crearUsuario(dto);
+    }
+
+    @PostMapping("/login")
+    public LoginResponseDTO iniciarSesion(
+            @Valid @RequestBody LoginRequestDTO dto) {
+
+        return usuarioService.iniciarSesion(dto);
     }
 
     @GetMapping("/listar")

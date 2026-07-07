@@ -1,15 +1,17 @@
 package gestionventas.Services;
 
+import gestionventas.Config.JwtService;
 import gestionventas.Dto.CrearUsuarioRequestDTO;
 import gestionventas.Dto.UsuarioResponseDTO;
 import gestionventas.Mapper.UsuarioMapper;
 import gestionventas.Model.Rol;
 import gestionventas.Model.Usuario;
 import gestionventas.Repository.UsuarioRepository;
+import gestionventas.Dto.LoginRequestDTO;
+import gestionventas.Dto.LoginResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,6 +22,9 @@ public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
     private final UsuarioMapper usuarioMapper;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
+
+
 
     public UsuarioResponseDTO crearUsuario(CrearUsuarioRequestDTO dto) {
 
@@ -130,6 +135,32 @@ public class UsuarioService {
 
         return usuarioMapper.toUsuarioResponseDTO(
                 usuarioRepository.save(usuario)
+        );
+    }
+    public LoginResponseDTO iniciarSesion(LoginRequestDTO dto) {
+
+        Usuario usuario = usuarioRepository
+                .findByCorreoElectronico(dto.getCorreoElectronico())
+                .orElseThrow(() ->
+                        new RuntimeException("Correo o contraseña incorrectos"));
+
+        if (!passwordEncoder.matches(dto.getContrasenia(), usuario.getContrasenia())) {
+            throw new RuntimeException("Correo o contraseña incorrectos");
+        }
+
+        if (!usuario.isActivo()) {
+            throw new RuntimeException("El usuario está desactivado");
+        }
+
+        String token = jwtService.generarToken(
+                usuario.getCorreoElectronico(),
+                usuario.getRol().name()
+        );
+
+        return new LoginResponseDTO(
+                token,
+                usuario.getNombreUsuario(),
+                usuario.getRol().name()
         );
     }
 }
