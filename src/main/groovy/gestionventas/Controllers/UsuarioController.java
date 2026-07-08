@@ -48,21 +48,21 @@ public class UsuarioController {
 
     @GetMapping("/correo/{correo}")
     public UsuarioResponseDTO buscarPorCorreo(
-            @PathVariable String correo) {
+            @PathVariable("correo") String correo) {
 
         return usuarioService.buscarPorCorreo(correo);
     }
 
     @GetMapping("/rol/{rol}")
     public List<UsuarioResponseDTO> buscarPorRol(
-            @PathVariable Rol rol) {
+            @PathVariable("rol") Rol rol) {
 
         return usuarioService.buscarPorRol(rol);
     }
 
     @PutMapping("/{id}")
     public UsuarioResponseDTO actualizarUsuario(
-            @PathVariable Long id,
+            @PathVariable("id") Long id,
             @Valid @RequestBody CrearUsuarioRequestDTO dto) {
 
         return usuarioService.actualizarUsuario(id, dto);
@@ -70,21 +70,21 @@ public class UsuarioController {
 
     @PatchMapping("/{id}/activar")
     public UsuarioResponseDTO activarUsuario(
-            @PathVariable Long id) {
+            @PathVariable("id") Long id) {
 
         return usuarioService.activarUsuario(id);
     }
 
     @PatchMapping("/{id}/desactivar")
     public UsuarioResponseDTO desactivarUsuario(
-            @PathVariable Long id) {
+            @PathVariable("id") Long id) {
 
         return usuarioService.desactivarUsuario(id);
     }
 
     @DeleteMapping("/{id}")
     public void eliminarUsuario(
-            @PathVariable Long id) {
+            @PathVariable("id") Long id) {
 
         usuarioService.eliminarUsuario(id);
     }
