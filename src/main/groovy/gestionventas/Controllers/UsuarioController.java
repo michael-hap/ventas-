@@ -41,7 +41,7 @@ public class UsuarioController {
 
     @GetMapping("/{id}")
     public UsuarioResponseDTO buscarPorId(
-            @PathVariable Long id) {
+            @PathVariable("id") Long id) {
 
         return usuarioService.buscarPorId(id);
     }
