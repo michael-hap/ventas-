@@ -48,7 +48,8 @@ public class SecurityConfig {
                         .requestMatchers(
                                 HttpMethod.GET,
                                 "/usuarios/listar",
-                                "/usuarios/*"
+                                "/usuarios/*",
+                                "/usuarios/correo/*"
                         ).permitAll()
 
                         .requestMatchers(
