@@ -34,7 +34,37 @@ public class SecurityConfig {
                 )
 
                 .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll()
+
+                        .requestMatchers(
+                                "/auth/**",
+                                "/usuarios/login"
+                        ).permitAll()
+
+                        .requestMatchers(
+                                HttpMethod.POST,
+                                "/usuarios/crear"
+                        ).permitAll()
+
+                        .requestMatchers(
+                                "/usuarios/**"
+                        ).permitAll()
+
+                        .requestMatchers(
+                                "/categorias/**",
+                                "/tallas/**",
+                                "/prendas/**"
+                        ).permitAll()
+
+                        .requestMatchers(
+                                "/empleados/**"
+                        ).hasRole("EMPLEADO")
+
+                        .requestMatchers(
+                                "/clientes/**"
+                        ).hasRole("CLIENTE")
+
+                        .anyRequest()
+                        .authenticated()
                 )
 
                 .addFilterBefore(
