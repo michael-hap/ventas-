@@ -16,7 +16,7 @@ public class PrendaController {
 
     private final PrendaService prendaService;
 
-    @PostMapping("/{crear}")
+    @PostMapping("/crear")
     public PrendaResponseDTO crearPrenda(
             @Valid @RequestBody CrearPrendaRequestDTO dto) {
 

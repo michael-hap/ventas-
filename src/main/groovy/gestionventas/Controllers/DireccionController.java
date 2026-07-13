@@ -92,6 +92,4 @@ public class DireccionController {
         direccionService.eliminarDireccion(idDireccion);
         return ResponseEntity.noContent().build();
     }
-
-
 }

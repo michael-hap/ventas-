@@ -36,28 +36,28 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
 
                         .requestMatchers(
-                                "/auth/**",
-                                "/usuarios/login"
-                        ).permitAll()
-
-                        .requestMatchers(
-                                HttpMethod.POST,
+                                "/usuarios/login",
                                 "/usuarios/crear"
                         ).permitAll()
 
                         .requestMatchers(
+                                HttpMethod.POST,
+                                "/direccion/**"
+                        ).hasRole("CLIENTE")
+
+                        .requestMatchers(
                                 HttpMethod.GET,
-                                "/usuarios/listar",
-                                "/usuarios/*",
-                                "/usuarios/correo/*"
-                        ).permitAll()
+                                "/direccion/**"
+                        ).hasRole("CLIENTE")
 
                         .requestMatchers(
-                                "/empleados/**"
-                        ).hasRole("EMPLEADO")
+                                HttpMethod.PUT,
+                                "/direccion/**"
+                        ).hasRole("CLIENTE")
 
                         .requestMatchers(
-                                "/clientes/**"
+                                HttpMethod.DELETE,
+                                "/direccion/**"
                         ).hasRole("CLIENTE")
 
                         .anyRequest()
