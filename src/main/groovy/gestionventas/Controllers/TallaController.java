@@ -40,7 +40,7 @@ public class TallaController {
 
     @GetMapping("/{idTalla}")
     public ResponseEntity<TallaResponseDTO> buscarPorId(
-            @PathVariable Long idTalla
+            @PathVariable("idTalla") Long idTalla
     ) {
         return ResponseEntity.ok(
                 tallaService.buscarPorId(idTalla)
@@ -49,7 +49,7 @@ public class TallaController {
 
     @GetMapping("/nombre/{nombre}")
     public ResponseEntity<TallaResponseDTO> buscarPorNombre(
-            @PathVariable String nombre
+            @PathVariable("nombre") String nombre
     ) {
         return ResponseEntity.ok(
                 tallaService.buscarPorNombre(nombre)
@@ -67,7 +67,7 @@ public class TallaController {
 
     @PutMapping("/{idTalla}")
     public ResponseEntity<TallaResponseDTO> actualizarTalla(
-            @PathVariable Long idTalla,
+            @PathVariable("idTalla") Long idTalla,
             @Valid @RequestBody CrearTallaRequestDTO dto
     ) {
         return ResponseEntity.ok(
@@ -77,7 +77,7 @@ public class TallaController {
 
     @DeleteMapping("/{idTalla}")
     public ResponseEntity<Void> eliminarTalla(
-            @PathVariable Long idTalla
+            @PathVariable("idTalla") Long idTalla
     ) {
         tallaService.eliminarTalla(idTalla);
 

@@ -40,7 +40,7 @@ public class CategoriaPrendaController {
 
     @GetMapping("/{idCategoria}")
     public ResponseEntity<CategoriaPrendaResponseDTO> buscarPorId(
-            @PathVariable Long idCategoria
+            @PathVariable("idCategoria") Long idCategoria
     ) {
         return ResponseEntity.ok(
                 categoriaPrendaService.buscarPorId(idCategoria)
@@ -68,7 +68,7 @@ public class CategoriaPrendaController {
 
     @PutMapping("/{idCategoria}")
     public ResponseEntity<CategoriaPrendaResponseDTO> actualizarCategoria(
-            @PathVariable Long idCategoria,
+            @PathVariable("idCategoria") Long idCategoria,
             @Valid @RequestBody CrearCategoriaPrendaRequestDTO dto
     ) {
         return ResponseEntity.ok(
@@ -81,7 +81,7 @@ public class CategoriaPrendaController {
 
     @DeleteMapping("/{idCategoria}")
     public ResponseEntity<Void> eliminarCategoria(
-            @PathVariable Long idCategoria
+            @PathVariable("idCategoria") Long idCategoria
     ) {
         categoriaPrendaService.eliminarCategoria(idCategoria);
 

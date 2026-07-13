@@ -16,7 +16,7 @@ public class PrendaController {
 
     private final PrendaService prendaService;
 
-    @PostMapping("/{crear}")
+    @PostMapping("/crear")
     public PrendaResponseDTO crearPrenda(
             @Valid @RequestBody CrearPrendaRequestDTO dto) {
 
@@ -31,14 +31,14 @@ public class PrendaController {
 
     @GetMapping("/{id}")
     public PrendaResponseDTO obtenerPorId(
-            @PathVariable Long id) {
+            @PathVariable("id") Long id) {
 
         return prendaService.obtenerPorId(id);
     }
 
     @PutMapping("/{id}")
     public PrendaResponseDTO actualizarPrenda(
-            @PathVariable Long id,
+            @PathVariable("id") Long id,
             @Valid @RequestBody CrearPrendaRequestDTO dto) {
 
         return prendaService.actualizarPrenda(id, dto);
@@ -46,7 +46,7 @@ public class PrendaController {
 
     @DeleteMapping("/{id}")
     public void eliminarPrenda(
-            @PathVariable Long id) {
+            @PathVariable("id") Long id) {
 
         prendaService.eliminarPrenda(id);
     }
