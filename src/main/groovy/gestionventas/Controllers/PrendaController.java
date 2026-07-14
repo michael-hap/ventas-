@@ -2,9 +2,11 @@ package gestionventas.Controllers;
 
 import gestionventas.Dto.CrearPrendaRequestDTO;
 import gestionventas.Dto.PrendaResponseDTO;
+import gestionventas.Dto.TallaResponseDTO;
 import gestionventas.Services.PrendaService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
