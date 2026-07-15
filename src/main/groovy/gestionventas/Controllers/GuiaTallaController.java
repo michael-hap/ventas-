@@ -18,8 +18,8 @@ public class GuiaTallaController {
     @PostMapping
     public ResponseEntity<GuiaTalla> crearGuiaTalla(
             @RequestBody GuiaTalla guiaTalla,
-            @RequestParam Long idTalla,
-            @RequestParam Long idPrenda) {
+            @RequestParam("idTalla") Long idTalla,
+            @RequestParam("idPrenda") Long idPrenda) {
 
         return ResponseEntity.ok(
                 guiaTallaService.crearGuiaTalla(
@@ -40,7 +40,7 @@ public class GuiaTallaController {
 
     @GetMapping("/{id}")
     public ResponseEntity<GuiaTalla> buscarPorId(
-            @PathVariable Long id) {
+            @PathVariable("id") Long id) {
 
         return ResponseEntity.ok(
                 guiaTallaService.buscarPorId(id)
@@ -49,10 +49,10 @@ public class GuiaTallaController {
 
     @PutMapping("/{id}")
     public ResponseEntity<GuiaTalla> actualizarGuiaTalla(
-            @PathVariable Long id,
+            @PathVariable("id") Long id,
             @RequestBody GuiaTalla guiaTalla,
-            @RequestParam Long idTalla,
-            @RequestParam Long idPrenda) {
+            @RequestParam("idTalla") Long idTalla,
+            @RequestParam("idPrenda") Long idPrenda) {
 
         return ResponseEntity.ok(
                 guiaTallaService.actualizarGuiaTalla(
@@ -66,7 +66,7 @@ public class GuiaTallaController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarGuiaTalla(
-            @PathVariable Long id) {
+            @PathVariable("id") Long id) {
 
         guiaTallaService.eliminarGuiaTalla(id);
 
