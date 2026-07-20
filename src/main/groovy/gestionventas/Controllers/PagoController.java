@@ -33,21 +33,21 @@ public class PagoController {
 
     @GetMapping("/{id}")
     public PagoResponseDTO buscarPorId(
-            @PathVariable Long id
+            @PathVariable("id") Long id
     ) {
         return pagoService.buscarPorId(id);
     }
 
     @GetMapping("/estado/{estado}")
     public List<PagoResponseDTO> buscarPorEstado(
-            @PathVariable EstadoPago estado
+            @PathVariable("estado") EstadoPago estado
     ) {
         return pagoService.buscarPorEstado(estado);
     }
 
     @PutMapping("/{id}")
     public PagoResponseDTO actualizarPago(
-            @PathVariable Long id,
+            @PathVariable("id") Long id,
             @Valid @RequestBody CrearPagoRequestDTO dto
     ) {
         return pagoService.actualizarPago(id, dto);
@@ -55,8 +55,8 @@ public class PagoController {
 
     @PatchMapping("/{id}/estado")
     public PagoResponseDTO actualizarEstado(
-            @PathVariable Long id,
-            @RequestParam EstadoPago estado
+            @PathVariable("id") Long id,
+            @RequestParam("estado") EstadoPago estado
     ) {
         return pagoService.actualizarEstado(id, estado);
     }
@@ -64,7 +64,7 @@ public class PagoController {
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void eliminarPago(
-            @PathVariable Long id
+            @PathVariable("id") Long id
     ) {
         pagoService.eliminarPago(id);
     }
