@@ -30,15 +30,37 @@ public class SecurityConfig {
 
                 .authorizeHttpRequests(auth -> auth
 
-                        // Endpoints públicos
                         .requestMatchers(
-                                "/usuarios/login",
-                                "/usuarios/crear",
-                                "/direccion/**"
+                                "/auth/**",
+                                "/usuarios/login"
                         ).permitAll()
 
-                        // El resto requiere autenticación
-                        .anyRequest().authenticated()
+                        .requestMatchers(
+                                HttpMethod.POST,
+                                "/usuarios/crear"
+                        ).permitAll()
+
+                        .requestMatchers(
+                                "/usuarios/**"
+                        ).permitAll()
+
+                        .requestMatchers(
+                                "/categorias/**",
+                                "/tallas/**",
+                                "/prendas/**",
+                                "/guias-talla/**"
+                        ).permitAll()
+
+                        .requestMatchers(
+                                "/empleados/**"
+                        ).hasRole("EMPLEADO")
+
+                        .requestMatchers(
+                                "/clientes/**"
+                        ).hasRole("CLIENTE")
+
+                        .anyRequest()
+                        .authenticated()
                 )
 
                 .addFilterBefore(

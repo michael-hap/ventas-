@@ -58,7 +58,7 @@ public class TallaController {
 
     @GetMapping("/buscar")
     public ResponseEntity<List<TallaResponseDTO>> buscarPorCoincidencia(
-            @RequestParam String texto
+            @RequestParam("texto") String texto
     ) {
         return ResponseEntity.ok(
                 tallaService.buscarPorCoincidencia(texto)
