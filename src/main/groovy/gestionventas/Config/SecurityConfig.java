@@ -50,8 +50,7 @@ public class SecurityConfig {
                                 "/tallas/**",
                                 "/prendas/**",
                                 "/guias-talla/**",
-                                "/ventas/**",
-                                "/pagos/**"
+                                "/ventas/**"
                         ).permitAll()
 
                         .requestMatchers(
