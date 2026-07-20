@@ -32,21 +32,21 @@ public class VentaController {
 
     @GetMapping("/{id}")
     public VentaResponseDTO buscarPorId(
-            @PathVariable Long id) {
+            @PathVariable("id") Long id) {
 
         return ventaService.buscarPorId(id);
     }
 
     @GetMapping("/estado/{estado}")
     public List<VentaResponseDTO> buscarPorEstado(
-            @PathVariable EstadoVenta estado) {
+            @PathVariable("estado") EstadoVenta estado) {
 
         return ventaService.buscarPorEstado(estado);
     }
 
     @DeleteMapping("/{id}")
     public void eliminarVenta(
-            @PathVariable Long id) {
+            @PathVariable("id") Long id) {
 
         ventaService.eliminarVenta(id);
     }
