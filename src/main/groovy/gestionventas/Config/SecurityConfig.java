@@ -3,7 +3,6 @@ package gestionventas.Config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -33,33 +32,22 @@ public class SecurityConfig {
 
                         .requestMatchers(
                                 "/auth/**",
-                                "/usuarios/login"
-                        ).permitAll()
-
-                        .requestMatchers(
-                                HttpMethod.POST,
-                                "/usuarios/crear"
-                        ).permitAll()
-
-                        .requestMatchers(
-                                "/usuarios/**"
-                        ).permitAll()
-
-                        .requestMatchers(
+                                "/usuarios/login",
+                                "/usuarios/crear",
+                                "/usuarios/**",
                                 "/categorias/**",
                                 "/tallas/**",
                                 "/prendas/**",
                                 "/guias-talla/**",
-                                "/ventas/**"
+                                "/ventas/**",
+                                "/inventarios/**"
                         ).permitAll()
 
-                        .requestMatchers(
-                                "/empleados/**"
-                        ).hasRole("EMPLEADO")
+                        .requestMatchers("/empleados/**")
+                        .hasRole("EMPLEADO")
 
-                        .requestMatchers(
-                                "/clientes/**"
-                        ).hasRole("CLIENTE")
+                        .requestMatchers("/clientes/**")
+                        .hasRole("CLIENTE")
 
                         .anyRequest()
                         .authenticated()
