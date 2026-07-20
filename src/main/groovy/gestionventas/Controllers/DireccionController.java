@@ -16,12 +16,13 @@ import java.util.List;
 @RequestMapping("/direccion")
 @RequiredArgsConstructor
 public class DireccionController {
+
     private final DireccionService direccionService;
 
     @PostMapping
     public ResponseEntity<DireccionResponseDTO> crearDireccion(
             @Valid @RequestBody CrearDireccionRequestDTO dto
-    ){
+    ) {
         DireccionResponseDTO direccionCreada =
                 direccionService.crearDireccion(dto);
 
@@ -29,7 +30,7 @@ public class DireccionController {
     }
 
     @GetMapping
-    public ResponseEntity<List<DireccionResponseDTO>> listarDirecciones(){
+    public ResponseEntity<List<DireccionResponseDTO>> listarDirecciones() {
 
         List<DireccionResponseDTO> direcciones =
                 direccionService.listarTodas();
@@ -38,7 +39,9 @@ public class DireccionController {
     }
 
     @GetMapping("/{idDireccion}")
-    public ResponseEntity<DireccionResponseDTO> buscarPorId(@PathVariable Long idDireccion){
+    public ResponseEntity<DireccionResponseDTO> buscarPorId(
+            @PathVariable("idDireccion") Long idDireccion
+    ) {
         DireccionResponseDTO direccion =
                 direccionService.buscarPorId(idDireccion);
 
@@ -46,7 +49,9 @@ public class DireccionController {
     }
 
     @GetMapping("/ciudad/{ciudad}")
-    public ResponseEntity<List<DireccionResponseDTO>> buscarPorCiudad(@PathVariable String ciudad){
+    public ResponseEntity<List<DireccionResponseDTO>> buscarPorCiudad(
+            @PathVariable("ciudad") String ciudad
+    ) {
         List<DireccionResponseDTO> direcciones =
                 direccionService.buscarPorCiudad(ciudad);
 
@@ -54,7 +59,9 @@ public class DireccionController {
     }
 
     @GetMapping("/departamento/{departamento}")
-    public ResponseEntity<List<DireccionResponseDTO>> buscarPorDepartamento(@PathVariable TarifaEnvio departamento){
+    public ResponseEntity<List<DireccionResponseDTO>> buscarPorDepartamento(
+            @PathVariable("departamento") TarifaEnvio departamento
+    ) {
         List<DireccionResponseDTO> direcciones =
                 direccionService.buscarPorDepartamento(departamento);
 
@@ -62,33 +69,39 @@ public class DireccionController {
     }
 
     @GetMapping("/barrio/{barrio}")
-    public ResponseEntity<List<DireccionResponseDTO>> buscarPorBarrio(@PathVariable String barrio){
+    public ResponseEntity<List<DireccionResponseDTO>> buscarPorBarrio(
+            @PathVariable("barrio") String barrio
+    ) {
         List<DireccionResponseDTO> direcciones =
                 direccionService.buscarPorBarrio(barrio);
+
         return ResponseEntity.ok(direcciones);
     }
 
     @GetMapping("/buscar")
     public ResponseEntity<List<DireccionResponseDTO>> buscarPorTextoDireccion(
-            @RequestParam String textoDireccion
-    ){
-        return ResponseEntity.ok(direccionService.buscarPorTextoDireccion(textoDireccion));
+            @RequestParam("textoDireccion") String textoDireccion
+    ) {
+        return ResponseEntity.ok(
+                direccionService.buscarPorTextoDireccion(textoDireccion)
+        );
     }
 
     @PutMapping("/{idDireccion}")
     public ResponseEntity<DireccionResponseDTO> actualizarDireccion(
-            @PathVariable Long idDireccion,
+            @PathVariable("idDireccion") Long idDireccion,
             @Valid @RequestBody CrearDireccionRequestDTO dto
-    ){
+    ) {
         DireccionResponseDTO direccionActualizada =
                 direccionService.actualizarDireccion(idDireccion, dto);
+
         return ResponseEntity.ok(direccionActualizada);
     }
 
     @DeleteMapping("/{idDireccion}")
     public ResponseEntity<Void> eliminarDireccion(
-            @PathVariable Long idDireccion
-    ){
+            @PathVariable("idDireccion") Long idDireccion
+    ) {
         direccionService.eliminarDireccion(idDireccion);
         return ResponseEntity.noContent().build();
     }
