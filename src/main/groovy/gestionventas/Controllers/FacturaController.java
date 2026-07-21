@@ -28,20 +28,20 @@ public class FacturaController {
 
     @GetMapping("/{id}")
     public FacturaResponseDTO obtenerPorId(
-            @PathVariable Long id
+            @PathVariable("id") Long id
     ) {
         return facturaService.obtenerPorId(id);
     }
 
     @DeleteMapping("/{id}")
     public void eliminarFactura(
-            @PathVariable Long id
+            @PathVariable("id") Long id
     ) {
         facturaService.eliminarFactura(id);
     }
     @PutMapping("/{id}")
     public FacturaResponseDTO actualizarFactura(
-            @PathVariable Long id,
+            @PathVariable("id") Long id,
             @Valid @RequestBody CrearFacturaRequestDTO dto
     ) {
         return facturaService.actualizarFactura(id, dto);

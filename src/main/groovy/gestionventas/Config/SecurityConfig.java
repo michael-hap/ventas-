@@ -42,7 +42,8 @@ public class SecurityConfig {
                                 "/ventas/**",
                                 "/inventarios/**",
                                 "/pagos/**",
-                                "/detallescarrito/**"
+                                "/detallescarrito/**",
+                                "/facturas/**"
                         ).permitAll()
 
                         .requestMatchers("/empleados/**")
