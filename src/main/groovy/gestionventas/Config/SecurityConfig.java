@@ -41,7 +41,8 @@ public class SecurityConfig {
                                 "/guias-talla/**",
                                 "/ventas/**",
                                 "/inventarios/**",
-                                "/pagos/**"
+                                "/pagos/**",
+                                "/detallescarrito/**"
                         ).permitAll()
 
                         .requestMatchers("/empleados/**")
